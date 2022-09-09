@@ -55,12 +55,12 @@ public class AdvertisementSelectionLogic {
      *     not be generated.
      */
     public GeneratedAdvertisement selectAdvertisement(String customerId, String marketplaceId) {
-        GeneratedAdvertisement generatedAdvertisement = new EmptyGeneratedAdvertisement();
+        final GeneratedAdvertisement[] generatedAdvertisement = {new EmptyGeneratedAdvertisement()};
         if (StringUtils.isEmpty(marketplaceId)) {
             LOG.warn("MarketplaceId cannot be null or empty. Returning empty ad.");
         } else {
             TargetingEvaluator evaluator = new TargetingEvaluator(new RequestContext(customerId, marketplaceId));
-            generatedAdvertisement = new GeneratedAdvertisement(contentDao.get(marketplaceId).stream()
+            contentDao.get(marketplaceId).stream()
                     .map(content -> {
                         return targetingGroupDao.get(content.getContentId()).stream()
                         .sorted(Comparator.comparing(TargetingGroup::getClickThroughRate))
@@ -68,9 +68,9 @@ public class AdvertisementSelectionLogic {
                         .anyMatch(TargetingPredicateResult::isTrue) ? content : null;
                     })
                     .filter(Objects::nonNull)
-                    .findAny().get());
+                    .findAny().ifPresent(content -> generatedAdvertisement[0] = new GeneratedAdvertisement(content));
 
         }
-        return generatedAdvertisement;
+        return generatedAdvertisement[0];
     }
 }
