@@ -68,8 +68,8 @@ public class AdvertisementSelectionLogic {
                         .anyMatch(TargetingPredicateResult::isTrue) ? content : null;
                     })
                     .filter(Objects::nonNull)
-                    .findAny().ifPresent(content -> generatedAdvertisement[0] = new GeneratedAdvertisement(content));
-
+                    .findAny()
+                    .ifPresent(content -> generatedAdvertisement[0] = new GeneratedAdvertisement(content));
         }
         return generatedAdvertisement[0];
     }

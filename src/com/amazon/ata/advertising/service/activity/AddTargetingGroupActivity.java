@@ -55,10 +55,7 @@ public class AddTargetingGroupActivity {
 
         List<TargetingPredicate> targetingPredicates = requestedTargetingPredicates.stream()
                 .filter(Objects::nonNull)
-                .map(predicate -> {
-                    TargetingPredicate p = TargetingPredicateTranslator.fromCoral(predicate);
-                    return p;
-                })
+                .map(TargetingPredicateTranslator::fromCoral)
                 .collect(Collectors.toList());
 
         TargetingGroup targetingGroup = targetingGroupDao.create(contentId, targetingPredicates);
