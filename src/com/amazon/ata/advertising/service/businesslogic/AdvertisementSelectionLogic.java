@@ -5,7 +5,6 @@ import com.amazon.ata.advertising.service.model.*;
 import com.amazon.ata.advertising.service.targeting.TargetingEvaluator;
 import com.amazon.ata.advertising.service.targeting.TargetingGroup;
 
-import com.amazon.ata.advertising.service.targeting.predicate.TargetingPredicateResult;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,22 +54,24 @@ public class AdvertisementSelectionLogic {
      *     not be generated.
      */
     public GeneratedAdvertisement selectAdvertisement(String customerId, String marketplaceId) {
-        final GeneratedAdvertisement[] generatedAdvertisement = {new EmptyGeneratedAdvertisement()};
+        GeneratedAdvertisement generatedAdvertisement = new EmptyGeneratedAdvertisement();
         if (StringUtils.isEmpty(marketplaceId)) {
             LOG.warn("MarketplaceId cannot be null or empty. Returning empty ad.");
         } else {
             TargetingEvaluator evaluator = new TargetingEvaluator(new RequestContext(customerId, marketplaceId));
-            contentDao.get(marketplaceId).stream()
-                    .map(content -> {
-                        return targetingGroupDao.get(content.getContentId()).stream()
-                        .sorted(Comparator.comparing(TargetingGroup::getClickThroughRate))
-                        .map(evaluator::evaluate)
-                        .anyMatch(TargetingPredicateResult::isTrue) ? content : null;
-                    })
-                    .filter(Objects::nonNull)
-                    .findAny()
-                    .ifPresent(content -> generatedAdvertisement[0] = new GeneratedAdvertisement(content));
+            SortedMap<TargetingGroup, AdvertisementContent> clickThroughMap = new TreeMap<>(Comparator.comparing(TargetingGroup::getClickThroughRate).reversed());
+            contentDao.get(marketplaceId)
+                    .forEach(content -> {
+                        targetingGroupDao.get(content.getContentId())
+                        .forEach(targetingGroup -> {
+                            if (evaluator.evaluate(targetingGroup).isTrue()) {
+                                clickThroughMap.put(targetingGroup, content);
+                            }
+                        });
+                    });
+            generatedAdvertisement = clickThroughMap.isEmpty()
+                    ? new EmptyGeneratedAdvertisement() : new GeneratedAdvertisement(clickThroughMap.get(clickThroughMap.firstKey()));
         }
-        return generatedAdvertisement[0];
+        return generatedAdvertisement;
     }
 }
