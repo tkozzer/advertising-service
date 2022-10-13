@@ -10,9 +10,9 @@ An overview of the service is covered in the [design document](DESIGN_DOCUMENT.m
 before continuing below.
 
 ## Project Mastery Tasks
-
+#### Under each mastery task I have linked to parts of the project that are my code.
 ### [Mastery Task 1: Filter out the noise](tasks/project-mastery-tasks/MasteryTask01.md)
 ### [Mastery Task 2: Concurrent Tasks](tasks/project-mastery-tasks/MasteryTask02.md)
 ### [Mastery Task 3: Ads don't grow on trees (or do they?)](tasks/project-mastery-tasks/MasteryTask03.md)
 
-*note: This is a project adapted from Amazon Techincal Academy by Bloomtech.*
+*note: This is a project adapted from Amazon Technical Academy by Bloomtech.*
