@@ -13,9 +13,9 @@ before continuing below.
 #### Under each mastery task I have linked to parts of the project that are my code.
 ### [Mastery Task 1: Filter out the noise](tasks/project-mastery-tasks/MasteryTask01.md)
 My Contributions:
-- [AdvertisementSelectionLogic's selectAdvertisement](src/com/amazon/ata/advertising/service/businesslogic/AdvertisementSelectionLogic.java)
-- [TargetingEvaluator's evaluate](src/com/amazon/ata/advertising/service/targeting/TargetingEvaluator.java) 
-- [AddTargetingGroupActivity's addTargetingGroup](src/com/amazon/ata/advertising/service/activity/AddTargetingGroupActivity.java)
+- [AdvertisementSelectionLogic's selectAdvertisement](https://github.com/tkozzer/advertising-service/tree/sprint-25/src/com/amazon/ata/advertising/service/businesslogic/AdvertisementSelectionLogic.java)
+- [TargetingEvaluator's evaluate](https://github.com/tkozzer/advertising-service/tree/sprint-25/src/com/amazon/ata/advertising/service/targeting/TargetingEvaluator.java) 
+- [AddTargetingGroupActivity's addTargetingGroup](https://github.com/tkozzer/advertising-service/tree/sprint-25/src/com/amazon/ata/advertising/service/activity/AddTargetingGroupActivity.java)
 ### [Mastery Task 2: Concurrent Tasks](tasks/project-mastery-tasks/MasteryTask02.md)
 My Contributions:
 - [AdvertisementSelectionLogic's selectAdvertisement](src/com/amazon/ata/advertising/service/businesslogic/AdvertisementSelectionLogic.java)
