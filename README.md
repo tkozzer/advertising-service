@@ -28,7 +28,9 @@ My Contributions:
 [See commit](https://github.com/tkozzer/advertising-service/commit/23f0e5418f4ad24e7f610a6a65bbde720efdfbbc)
 
 ### [Mastery Task 3: Ads don't grow on trees (or do they?)](tasks/project-mastery-tasks/MasteryTask03.md)
-- [AdvertisementSelectionLogic's selectAdvertisement](src/com/amazon/ata/advertising/service/businesslogic/AdvertisementSelectionLogic.java)]
+My Contributions:
+
+- [AdvertisementSelectionLogic's selectAdvertisement](src/com/amazon/ata/advertising/service/businesslogic/AdvertisementSelectionLogic.java)
 
 [See Commit](https://github.com/tkozzer/advertising-service/commit/1584399eceb57e834bf575d513e8b9eaa8766785)
 
