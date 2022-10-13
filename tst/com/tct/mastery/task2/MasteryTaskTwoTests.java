@@ -44,6 +44,10 @@ public class MasteryTaskTwoTests {
                     "expected less than {} ms. GenerateAdvertisement should " +
                     "evaluate predicates concurrently!",
                 elapsed, SERIAL_MINIMUM_EXECUTION_DURATION);
+        System.out.printf("GenerateAdvertisement request took %d milliseconds to complete, " +
+                        "expected less than %d ms. GenerateAdvertisement should " +
+                        "evaluate predicates concurrently!",
+                elapsed, SERIAL_MINIMUM_EXECUTION_DURATION);
 
         assertNotNull(result.getAdvertisement(), "Expected a non null advertisement in the response.");
         assertNotNull(result.getAdvertisement().getId(), "Expected the advertisement to have a non-null " +

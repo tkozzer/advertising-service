@@ -86,4 +86,12 @@ public class TargetingGroup {
     public void setTargetingPredicates(List<TargetingPredicate> targetingPredicates) {
         this.targetingPredicates = targetingPredicates;
     }
+
+    @Override
+    public String toString() {
+        return "TargetingGroup{" +
+                "targetingGroupId='" + targetingGroupId + '\'' +
+                ", clickThroughRate=" + clickThroughRate +
+                '}';
+    }
 }
